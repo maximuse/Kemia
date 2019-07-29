@@ -1,8 +1,7 @@
 package hu.nyirszikszi;
 
 import java.io.RandomAccessFile;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -109,5 +108,39 @@ class Actions {
         }
 
         return result + " év volt a leghosszabb időszak két elem felfedezése között.";
+    }
+
+    static StringBuilder task8(ArrayList<Felfedezesek> list) {
+        StringBuilder result = new StringBuilder("Statisztika");
+        int counter = 0;
+        TreeSet<Integer> years = new TreeSet<>();
+        Map<Integer, Integer> stat = new HashMap<>();
+
+        for (Felfedezesek felfedezesek : list) {
+            if (!felfedezesek.getEv().equals("Ókor")) {
+                years.add(Integer.parseInt(felfedezesek.getEv()));
+            }
+        }
+
+        for (Integer year : years) {
+            for (Felfedezesek felfedezesek : list) {
+                if (!felfedezesek.getEv().equals("Ókor")) {
+                    if (year == Integer.parseInt(felfedezesek.getEv())) {
+                        counter++;
+                    }
+                }
+            }
+
+            stat.put(year, counter);
+            counter = 0;
+        }
+
+        stat.forEach((key, value) -> {
+            if (value > 3) {
+                result.append("\n\t" + key + ": " + value);
+            }
+        });
+
+        return result;
     }
 }
