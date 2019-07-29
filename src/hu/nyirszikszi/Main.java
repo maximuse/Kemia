@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         ArrayList<Felfedezesek> list = Actions.readList("felfedezesek.csv");
-        //System.out.println(list);
 
         System.out.println("3. feladat: Elemek száma: " + list.size());
 
