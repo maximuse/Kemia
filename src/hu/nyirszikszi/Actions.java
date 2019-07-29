@@ -89,4 +89,25 @@ class Actions {
 
         return result;
     }
+
+    static String task7(ArrayList<Felfedezesek> list) {
+        int result = 0;
+        int sub;
+
+        for (int i = 0; i < list.size(); i++) {
+            if (!list.get(i).getEv().equals("Ókor")) {
+                try {
+                    sub = Integer.parseInt(list.get(i+1).getEv()) - Integer.parseInt(list.get(i).getEv());
+
+                    if (sub > result) {
+                        result = sub;
+                    }
+
+                }
+                catch (Exception ignored) {}
+            }
+        }
+
+        return result + " év volt a leghosszabb időszak két elem felfedezése között.";
+    }
 }
